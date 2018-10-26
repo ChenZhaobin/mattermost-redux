@@ -1061,6 +1061,10 @@ export function getNeededCustomEmojis(state, posts) {
     let customEmojisToLoad = new Set();
 
     Object.values(posts).forEach((post) => {
+        if (post.metadata) {
+            return;
+        }
+
         if (post.message.includes(':')) {
             if (!customEmojisByName) {
                 customEmojisByName = selectCustomEmojisByName(state);
